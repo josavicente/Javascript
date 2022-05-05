@@ -19,4 +19,6 @@ const saludo = c + ' '+ d;
 
 c = 'Hola de nuevo';
 
+var miNombre = 'Josa';
+
 

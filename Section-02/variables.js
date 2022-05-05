@@ -1,3 +1,5 @@
+/* Showing a pop up window with the text "Hola desde app.js" */
+alert('Hola desde app.js')
 
 let a = 10 ,
     b = 20, 
@@ -5,6 +7,7 @@ let a = 10 ,
     d = 'Spiderman', 
     x = a + b;
 
+/* Creating a variable called saludo and assigning it the value of c + ' '+ d; */
 const saludo = c + ' '+ d;
 
 

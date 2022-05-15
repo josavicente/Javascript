@@ -37,9 +37,32 @@ const crearDeck = () => {
     return deck;
 }
 
+const pedirCarta = () => {
+
+    /* Checking if the deck is empty. If it is, it will throw an error. */
+    if ( deck.length == 0 ) {
+        throw 'No hay cartas'
+    }
+    /* Taking the last card of the deck. */
+    const carta = deck.pop();
+    return carta;
+}
 
 
+const valorCarta = (carta) => {
+    /* The above code is checking if the value of the card is a number or a letter. If it is a number,
+    it returns the value of the card. If it is a letter, it returns the value of the letter. */
+    const valor = carta.substring(0, carta.length - 1);
+    return isNaN(valor) ?  ( ( valor === 'A') ? 11 : 10 ) : valor * 1;
+}
 
+valorCarta('10C');
+
+/* Creating a deck of cards. */
 crearDeck();
+/* Taking the last card of the deck. */
+const carta = valorCarta(pedirCarta());
+console.log(carta);
+
 
 

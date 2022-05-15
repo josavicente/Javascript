@@ -15,6 +15,12 @@ let deck = [];
 const tipos = ['C', 'D', 'H', 'S']; 
 /* Creating an array with the special cards. */
 const especiales = ['A', 'J', 'Q', 'K']; 
+const botonPedir = document.querySelector('#btn-pedir');
+const botonStop = document.querySelector('#btn-stop');
+const botonNuevo = document.querySelector('#btn-nuevo');
+let puntosJugador = 0,
+    puntosIA = 0;
+const smalls = document.querySelectorAll('small');
 
 const crearDeck = () => {
 
@@ -32,7 +38,7 @@ const crearDeck = () => {
     }
     
     deck = _.shuffle(deck);
-    console.log(deck);
+
 
     return deck;
 }
@@ -62,7 +68,19 @@ valorCarta('10C');
 crearDeck();
 /* Taking the last card of the deck. */
 const carta = valorCarta(pedirCarta());
-console.log(carta);
+
+
+// Eventos
+
+botonPedir.addEventListener('click', () => {
+
+    const carta = pedirCarta();
+    puntosJugador = puntosJugador + valorCarta(carta);
+    smalls[0].innerText = puntosJugador
+    
+})
+
+
 
 
 

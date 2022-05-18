@@ -20,7 +20,11 @@ const botonStop = document.querySelector('#btn-stop');
 const botonNuevo = document.querySelector('#btn-nuevo');
 let puntosJugador = 0,
     puntosIA = 0;
+const divCartasJugador = document.querySelector('#jugador-cartas');
+const divCartasIA = document.querySelector('#ia-cartas');
 const smalls = document.querySelectorAll('small');
+
+
 
 const crearDeck = () => {
 
@@ -62,10 +66,33 @@ const valorCarta = (carta) => {
     return isNaN(valor) ?  ( ( valor === 'A') ? 11 : 10 ) : valor * 1;
 }
 
-valorCarta('10C');
+const turnoIA = ( puntosMinimos ) => {
+
+    do {
+        const carta = pedirCarta();
+        puntosIA = puntosIA + valorCarta(carta);
+        
+        smalls[1].innerText = puntosIA;
+    
+        const imgCarta = document.createElement('img');
+        /* Adding the image of the card to the imgCarta variable. */
+        imgCarta.src = `assets/cartas/${ carta }.png`;
+        /* Adding a class to the imgCarta variable. */
+        imgCarta.classList.add('carta');
+        /* Adding the image of the card to the divCartasJugador variable. */
+        divCartasIA.append(imgCarta);
+
+        if ( puntosMinimos > 21 ){
+            break;
+        }
+
+    } while ( ( puntosIA < puntosMinimos ) && (puntosMinimos < 21 ));
+
+}
 
 /* Creating a deck of cards. */
 crearDeck();
+console.log(deck);
 /* Taking the last card of the deck. */
 const carta = valorCarta(pedirCarta());
 
@@ -76,9 +103,39 @@ botonPedir.addEventListener('click', () => {
 
     const carta = pedirCarta();
     puntosJugador = puntosJugador + valorCarta(carta);
+    
     smalls[0].innerText = puntosJugador
+
+    const imgCarta = document.createElement('img');
+    /* Adding the image of the card to the imgCarta variable. */
+    imgCarta.src = `assets/cartas/${ carta }.png`;
+    /* Adding a class to the imgCarta variable. */
+    imgCarta.classList.add('carta');
+    /* Adding the image of the card to the divCartasJugador variable. */
+    divCartasJugador.append(imgCarta);
+
+    if ( puntosJugador > 21 ) {
+        console.warn("Perdiste");
+        botonPedir.disabled = true;
+        botonStop.disabled = true;
+        turnoIA(puntosJugador);
+    } else if (puntosJugador === 21 ) {
+        console.warn("Ganaste");
+        botonPedir.disabled = true;
+        botonStop.disabled = true;
+        turnoIA( puntosJugador );
+    }
+
+})
+
+botonStop.addEventListener('click', () => {
+
+    botonStop.disabled = true;
+    botonPedir.disabled = true;
+    turnoIA( puntosJugador )
     
 })
+
 
 
 

@@ -98,6 +98,8 @@ const turnoIA = ( puntosMinimos ) => {
             alert('IA Gana');
         } else if (puntosIA > 21 ){
             alert('Jugador gana');
+        }else {
+            alert('IA gana');
         }
     }, 10);
 
@@ -148,6 +150,27 @@ botonStop.addEventListener('click', () => {
     botonStop.disabled = true;
     botonPedir.disabled = true;
     turnoIA( puntosJugador )
+    
+})
+
+botonNuevo.addEventListener('click', () => {
+
+    console.clear();
+
+    botonStop.disabled = false;
+    botonPedir.disabled = false;
+    
+    deck = [];
+    deck = crearDeck();
+
+    smalls[0].innerText = 0;
+    smalls[1].innerText = 0;
+
+    puntosIA = 0;
+    puntosJugador = 0;
+
+    divCartasJugador.innerHTML = '';
+    divCartasIA.innerHTML = '';
     
 })
 

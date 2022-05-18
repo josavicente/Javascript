@@ -82,11 +82,26 @@ const turnoIA = ( puntosMinimos ) => {
         /* Adding the image of the card to the divCartasJugador variable. */
         divCartasIA.append(imgCarta);
 
+        
         if ( puntosMinimos > 21 ){
+            alert('IA Gana');
             break;
         }
 
     } while ( ( puntosIA < puntosMinimos ) && (puntosMinimos < 21 ));
+
+
+    setTimeout(() => {
+        if ( puntosIA === puntosMinimos ) {
+            alert('Nadie Gana :(');
+        } else if ( puntosMinimos > 21 ){
+            alert('IA Gana');
+        } else if (puntosIA > 21 ){
+            alert('Jugador gana');
+        }
+    }, 10);
+
+    
 
 }
 

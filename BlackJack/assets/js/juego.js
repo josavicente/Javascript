@@ -52,7 +52,7 @@ const pedirCarta = () => {
     /* Checking if the deck is empty. If it is, it will throw an error. */
     if ( deck.length == 0 ) {
         throw 'No hay cartas'
-    }
+    } 
     /* Taking the last card of the deck. */
     const carta = deck.pop();
     return carta;
